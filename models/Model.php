@@ -39,35 +39,55 @@ class Model
     {
         if (isset($this->id) && !is_null($this->id)) {
             // update
-            $sql = "UPDATE {$this->table} SET ";
-            foreach ($this->fillables as $key => $prop) {
-                if ($key > 0) {
-                    $sql .= ", ";
-                }
-                $sql .= "$prop = \"{$this->{$prop}}\"";
-            }
+            return DB::getInstance()->exec($this->formatUpdateQuery());
         } else {
             // insert
-            $sql = "INSERT INTO {$this->table} ({$this->formatFillables(false)}) VALUES ({$this->formatFillables(true)})";
+            return DB::getInstance()->exec($this->formatInsertQuery());
         }
-        return DB::getInstance()->exec($sql);
+    }
+
+    protected function formatUpdateQuery()
+    {
+        $sql = "UPDATE {$this->table} SET ";
+        $first = true;
+        foreach ($this->fillables as $value) {
+            if ($value !== 'id' && isset($this->{$value})) {
+                if ($first === false) {
+                    $sql .= ', ';
+                }
+                $sql .= "{$value} = \"{$this->{$value}}\"";
+                $first = false;
+            }
+        }
+        $sql .= " WHERE id = {$this->id}";
+        return $sql;
+    }
+
+    protected function formatInsertQuery()
+    {
+        $sql = "INSERT INTO {$this->table} ";
+        $values = '(';
+        $data = '("';
+        $first = true;
+        foreach ($this->fillables as $value) {
+            if ($value !== 'id' && isset($this->{$value})) {
+                if ($first === false) {
+                    $values .= ', ';
+                    $data .= '", "';
+                }
+                $values .= $value;
+                $data .= $this->{$value};
+                $first = false;
+            }
+        }
+        $values .= ')';
+        $data .= '")';
+        $sql .= "$values VALUES $data";
+        return $sql;
     }
 
     public function getFillables()
     {
         return $this->fillables;
-    }
-
-    private function formatFillables($_v = false)
-    {
-        if ($_v === true) {
-            $values = [];
-            foreach ($this->fillables as $prop) {
-                $values[] = isset($this->{$prop}) ? $this->{$prop} : NULL;
-            }
-            return '"' . implode('", "', $values) . '"';
-        } else {
-            return implode(', ', $this->fillables);
-        }
     }
 }

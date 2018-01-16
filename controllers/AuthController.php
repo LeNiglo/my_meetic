@@ -58,6 +58,7 @@ class AuthController extends Controller
         $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $user->firstname = $_POST['firstname'];
         $user->lastname = $_POST['lastname'];
+        $user->gender = $_POST['gender'];
         $user->birthday = "{$_POST['birth_year']}-{$_POST['birth_month']}-{$_POST['birth_day']}";
 
         try {
@@ -67,10 +68,7 @@ class AuthController extends Controller
                 $_SESSION['success'] = 'register successfull, please login';
                 return redirect('/auth/login');
             }
-        } catch (\Exception $e) {
-
-        }
-
+        } catch (\Exception $ignore) { dd($_POST, $ignore->getMessage()); unset($ignore); }
         $_SESSION['error'] = 'register failed, please try again';
         return redirect('/auth/register');
     }

@@ -15,19 +15,6 @@ class HomeController extends Controller
             $user = auth_user();
         }
 
-        return $this->view('home', [
-            'title' => 'Home',
-            'user' => $user,
-        ]);
-    }
-
-    public function search()
-    {
-        $user = NULL;
-        if (auth_check()) {
-            $user = auth_user();
-        }
-
         $results = [];
         $sql = "SELECT * FROM users WHERE active = 1";
         $bindings = [];

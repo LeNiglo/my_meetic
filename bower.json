@@ -1,0 +1,27 @@
+{
+  "name": "my_meetic",
+  "homepage": "https://github.com/LeNiglo/my_meetic",
+  "authors": [
+    "LeNiglo <lefrantguillaume@gmail.com>"
+  ],
+  "description": "A small Meetic like developed at the WAF",
+  "main": "public/index.php",
+  "keywords": [
+    "waf"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.0",
+    "jquery": "^3.2.1",
+    "font-awesome": "^4.7.0"
+  }
+}

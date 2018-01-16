@@ -1,0 +1,35 @@
+{
+    "name": "my_meetic",
+    "version": "1.0.0",
+    "description": "A small Meetic like developed at the WAF",
+    "main": "public/index.php",
+    "watch": {
+        "build" : "resources/*/*.{less,js}"
+    },
+    "scripts": {
+        "watch": "npm-watch",
+        "build": "babel resources/js --out-dir public/js && lessc ./resources/less/app.less ./public/css/app.css",
+        "production": "babel resources/js --out-file public/js/app.min.js && lessc --clean-css ./resources/less/app.less ./public/css/app.min.css"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-preset-env": "^1.6.1",
+        "less": "^2.7.3",
+        "less-plugin-clean-css": "^1.5.1",
+        "npm-watch": "^0.3.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/LeNiglo/my_meetic.git"
+    },
+    "keywords": [
+        "waf"
+    ],
+    "author": "LeNiglo <lefrantguillaume@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/LeNiglo/my_meetic/issues"
+    },
+    "homepage": "https://github.com/LeNiglo/my_meetic#readme"
+}

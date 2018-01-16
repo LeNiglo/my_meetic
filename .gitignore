@@ -1,1 +1,11 @@
+# dependencies
 /public/bower
+/node_modules
+
+# generated js
+/public/js/app.js
+/public/js/app.min.js
+
+# generated css
+/public/css/app.css
+/public/css/app.min.css

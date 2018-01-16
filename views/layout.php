@@ -67,5 +67,6 @@
 
     <script type="text/javascript" src="/bower/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script type="text/javascript" src="/bower/bootstrap/dist/js/bootstrap.min.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/js/app.js" charset="utf-8"></script>
 </body>
 </html>

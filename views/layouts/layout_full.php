@@ -7,18 +7,37 @@
 
     <link type="text/css" rel="stylesheet" href="/css/app.css" />
     <link type="text/css" rel="stylesheet" href="/bower/bootstrap/dist/css/bootstrap.min.css" />
+    <style type="text/css" media="screen">
+    body, html {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: table;
+    }
+    body {
+        display: table-cell;
+        vertical-align: middle;
+        padding-bottom: 42px !important;
+    }
+
+    header, footer {
+        position: fixed;
+        z-index: 999;
+    }
+    </style>
 </head>
 <body>
 
     <header>
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-sm-6">
+                <div class="col-xs-6">
                     <a href="/" class="site-title">
                         My Meetic
                     </a>
                 </div>
-                <div class="col-xs-12 col-sm-6">
+                <div class="col-xs-6">
                     <ul class="nav-links">
                         <?php if (auth_check()) { ?>
                             <li>

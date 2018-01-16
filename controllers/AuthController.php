@@ -20,7 +20,7 @@ class AuthController extends Controller
             'form' => [
                 'email' => $email,
             ],
-        ]);
+        ], 'layout_full');
     }
 
     public function post_login()
@@ -41,7 +41,7 @@ class AuthController extends Controller
     {
         return $this->view('register', [
             'title' => 'Register',
-        ]);
+        ], 'layout_full');
     }
 
     public function post_register()

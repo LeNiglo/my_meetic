@@ -4,12 +4,16 @@
     "description": "A small Meetic like developed at the WAF",
     "main": "public/index.php",
     "watch": {
-        "build" : "resources/*/*.{less,js}"
+        "dev" : {
+            "patterns": ["resources"],
+            "extensions": "js,less",
+            "quiet": false
+        }
     },
     "scripts": {
         "watch": "npm-watch",
-        "build": "babel resources/js --out-dir public/js && lessc ./resources/less/app.less ./public/css/app.css",
-        "production": "babel resources/js --out-file public/js/app.min.js && lessc --clean-css ./resources/less/app.less ./public/css/app.min.css"
+        "dev": "babel resources/js --out-dir public/js; lessc ./resources/less/app.less ./public/css/app.css",
+        "production": "babel resources/js --out-file public/js/app.min.js; lessc --clean-css ./resources/less/app.less ./public/css/app.min.css"
     },
     "dependencies": {},
     "devDependencies": {

@@ -10,16 +10,16 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $user = NULL;
-        if (auth_check()) {
-            $user = auth_user();
+        if (!auth_check()) {
+            return redirect('/auth/login', 401);
         }
+        $user = auth_user();
 
         $results = [];
-        $sql = "SELECT * FROM users WHERE active = 1";
+        $sql = "SELECT * FROM users WHERE active = 1 AND id != {$user->id}";
         $bindings = [];
 
-        if (isset($_POST['age']) && !empty($_POST['age'])) {
+        if (isset($_POST['age']) && $_POST['age'] != '') {
             $age1 = explode('/', $_POST['age'])[1];
             $age2 = explode('/', $_POST['age'])[0];
 
@@ -33,12 +33,12 @@ class HomeController extends Controller
             }
         }
 
-        if (isset($_POST['gender']) && !empty($_POST['gender'])) {
+        if (isset($_POST['gender']) && $_POST['gender'] != '') {
             $sql .= " AND gender = :gender";
             $bindings['gender'] = $_POST['gender'];
         }
 
-        if (isset($_POST['city']) && !empty($_POST['city'])) {
+        if (isset($_POST['city']) && $_POST['city'] != '') {
             $sql .= " AND city = :city";
             $bindings['city'] = strtolower($_POST['city']);
         }

@@ -15,10 +15,19 @@
         padding: 0;
         display: table;
     }
+
     body {
         display: table-cell;
         vertical-align: middle;
         padding-bottom: 42px !important;
+    }
+
+    body {
+        background-image: url('/img/background.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        background-attachment: fixed;
     }
 
     header, footer {

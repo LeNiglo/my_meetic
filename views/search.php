@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-xs-12">
-        <form action="/home/search" method="post">
+        <form action="/" method="post">
             <input type="hidden" name="_token" value="<?= csrf_token() ?>" />
 
             <div class="row">

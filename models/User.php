@@ -15,7 +15,7 @@ class User extends Model
     public static function auth($email, $password)
     {
         $db = DB::getInstance();
-        $query = $db->prepare("SELECT * FROM users WHERE email = :email AND active = 1");
+        $query = $db->prepare("SELECT * FROM users WHERE email = :email");
         $query->execute([
             'email' => $email,
         ]);
